@@ -9,11 +9,11 @@ import java.util.List;
 @Service
 public class ProductService {
     private List<Product> products = new ArrayList<>();
-    private int id = 0;
+    private long ID = 0;
 
     {
-        products.add(new Product(++id, "iphone", "sell", 1000, "NN", "Ksuny"));
-        products.add(new Product(++id, "iphone2", "sell", 12000, "NN2", "Ksuny2"));
+        products.add(new Product(++ID, "iphone", "sell", 1000, "NN", "Ksuny"));
+        products.add(new Product(++ID, "iphone2", "sell", 12000, "NN2", "Ksuny2"));
 
     }
 
@@ -21,16 +21,16 @@ public class ProductService {
         return products;
     }
     public void saveProduct(Product product) {
-        product.setId(++id);
+        product.setId(++ID);
         products.add(product);
     }
-    public void deleteProduct(long id) {
-        products.removeIf(product-> product.getId() == id);
+    public void deleteProduct(Long id) {
+        products.removeIf(product-> product.getId().equals(id));
     }
 
-    public Product GetProductById(long id) {
+    public Product GetProductById(Long id) {
         for (Product product: products) {
-            if (product.getId() == id) return product;
+            if (product.getId().equals(id)) return product;
         }
         return null;
     }
